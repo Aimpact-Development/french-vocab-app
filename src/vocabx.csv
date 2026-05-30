@@ -1,0 +1,241 @@
+topic,grammar_type,english,french,example
+People & Family,noun,family,la famille,La famille est très importante pour moi.
+People & Family,noun,father,le père,Mon père travaille beaucoup chaque jour.
+People & Family,noun,mother,la mère,Ma mère cuisine très bien.
+People & Family,noun,parents,les parents,Mes parents habitent à Paris.
+People & Family,noun,son,le fils,Son fils a cinq ans.
+People & Family,noun,daughter / girl,la fille,Ma fille aime beaucoup la musique.
+People & Family,noun,brother,le frère,Mon frère est plus grand que moi.
+People & Family,noun,sister,la sœur,Ma sœur habite à Lyon.
+People & Family,noun,husband,le mari,Son mari est médecin.
+People & Family,noun,woman / wife,la femme,Sa femme parle très bien français.
+People & Family,noun,child,l'enfant,L'enfant joue dans le jardin.
+People & Family,noun,baby,le bébé,Le bébé dort bien la nuit.
+People & Family,noun,friend,l'ami,Mon ami s'appelle Thomas.
+People & Family,noun,person,la personne,C'est une personne très sympa.
+People & Family,noun,neighbor,le voisin,Mon voisin est très gentil.
+People & Family,noun,colleague,le collègue,Mon collègue parle anglais.
+People & Family,noun,teacher,le professeur,Le professeur explique bien.
+People & Family,noun,student,l'étudiant,L'étudiant étudie beaucoup.
+People & Family,noun,gentleman / man,le monsieur,Le monsieur attend le bus.
+People & Family,noun,lady,la dame,La dame porte un chapeau rouge.
+Daily Verbs,verb,to be,être,Je suis fatigué aujourd'hui.
+Daily Verbs,verb,to have,avoir,J'ai deux enfants.
+Daily Verbs,verb,to do / make,faire,Je fais du sport le matin.
+Daily Verbs,verb,to go,aller,Nous allons au marché ce soir.
+Daily Verbs,verb,to come,venir,Tu viens dîner ce soir?
+Daily Verbs,verb,to take,prendre,Je prends le train à huit heures.
+Daily Verbs,verb,to put / wear,mettre,Elle met un manteau avant de sortir.
+Daily Verbs,verb,to give,donner,Il donne un cadeau à sa mère.
+Daily Verbs,verb,to say / tell,dire,Qu'est-ce que tu dis?
+Daily Verbs,verb,to speak,parler,Elle parle très bien français.
+Daily Verbs,verb,to listen,écouter,J'écoute de la musique en travaillant.
+Daily Verbs,verb,to watch / look at,regarder,Nous regardons un film ce soir.
+Daily Verbs,verb,to see,voir,Je vois mes amis demain matin.
+Daily Verbs,verb,to know,savoir,Tu sais parler espagnol?
+Daily Verbs,verb,to want,vouloir,Je veux un café s'il vous plaît.
+Daily Verbs,verb,can / to be able to,pouvoir,Tu peux m'aider s'il te plaît?
+Daily Verbs,verb,must / to have to,devoir,Je dois partir maintenant.
+Daily Verbs,verb,to like / love,aimer,J'aime beaucoup le chocolat.
+Daily Verbs,verb,to prefer,préférer,Je préfère le thé au café.
+Daily Verbs,verb,to look for,chercher,Je cherche mes clés depuis ce matin.
+Daily Verbs,verb,to find,trouver,J'ai trouvé mon passeport!
+Daily Verbs,verb,to buy,acheter,Elle achète des légumes au marché.
+Daily Verbs,verb,to pay,payer,Je vais payer par carte bancaire.
+Daily Verbs,verb,to open,ouvrir,Ouvre la fenêtre s'il te plaît.
+Daily Verbs,verb,to close,fermer,Ferme bien la porte en sortant.
+Daily Verbs,verb,to start,commencer,Le cours commence à neuf heures.
+Daily Verbs,verb,to finish,finir,Je finis le travail à dix-huit heures.
+Daily Verbs,verb,to wait,attendre,J'attends le bus depuis dix minutes.
+Daily Verbs,verb,to stay,rester,Je reste à la maison ce soir.
+Home,noun,house,la maison,J'habite dans une petite maison.
+Home,noun,apartment,l'appartement,Son appartement est au troisième étage.
+Home,noun,bedroom / room,la chambre,Ma chambre est grande et lumineuse.
+Home,noun,kitchen,la cuisine,Je cuisine dans la cuisine chaque soir.
+Home,noun,bathroom,la salle de bains,La salle de bains est libre maintenant.
+Home,noun,living room,le salon,Nous regardons la télé dans le salon.
+Home,noun,door,la porte,Ferme la porte s'il te plaît.
+Home,noun,window,la fenêtre,Ouvre la fenêtre car il fait chaud.
+Home,noun,table,la table,Mets les assiettes sur la table.
+Home,noun,chair,la chaise,Prends une chaise et assieds-toi.
+Home,noun,bed,le lit,Je vais au lit à minuit.
+Home,noun,wardrobe / cupboard,l'armoire,Mes vêtements sont dans l'armoire.
+Home,noun,key,la clé,J'ai perdu ma clé ce matin.
+Home,noun,garden,le jardin,Les enfants jouent dans le jardin.
+Home,noun,stairs,l'escalier,Prends l'escalier plutôt que l'ascenseur.
+Food & Drink,noun,bread,le pain,Je mange du pain frais le matin.
+Food & Drink,noun,water,l'eau,Je bois beaucoup d'eau chaque jour.
+Food & Drink,noun,coffee,le café,Je prends un café s'il vous plaît.
+Food & Drink,noun,tea,le thé,Elle préfère le thé au café.
+Food & Drink,noun,milk,le lait,Le bébé boit du lait.
+Food & Drink,noun,cheese,le fromage,Le fromage français est délicieux.
+Food & Drink,noun,fruit,le fruit,Je mange des fruits chaque matin.
+Food & Drink,noun,apple,la pomme,Elle mange une pomme après le déjeuner.
+Food & Drink,noun,banana,la banane,La banane est jaune et sucrée.
+Food & Drink,noun,vegetable,le légume,Je mange des légumes tous les jours.
+Food & Drink,noun,soup,la soupe,La soupe est chaude et délicieuse.
+Food & Drink,noun,meat,la viande,Je ne mange pas de viande le lundi.
+Food & Drink,noun,fish,le poisson,Le poisson du marché est très frais.
+Food & Drink,noun,rice,le riz,Je mange du riz avec du poulet.
+Food & Drink,noun,pasta,les pâtes,Les pâtes sont prêtes dans cinq minutes.
+Food & Drink,noun,sugar,le sucre,Tu veux du sucre dans ton café?
+Food & Drink,noun,salt,le sel,Passe-moi le sel s'il te plaît.
+Food & Drink,noun,meal,le repas,Le repas était vraiment délicieux.
+Food & Drink,noun,breakfast,le petit déjeuner,Je prends le petit déjeuner à sept heures.
+Food & Drink,noun,dinner,le dîner,Le dîner est servi à vingt heures.
+Travel & City,noun,city / town,la ville,Paris est une très grande ville.
+Travel & City,noun,village,le village,Je viens d'un petit village en Bretagne.
+Travel & City,noun,street,la rue,Quelle rue cherchez-vous exactement?
+Travel & City,noun,square / place,la place,On se retrouve sur la place à midi.
+Travel & City,noun,train station,la gare,La gare est loin d'ici.
+Travel & City,noun,airport,l'aéroport,L'avion arrive à l'aéroport à midi.
+Travel & City,noun,train,le train,Le train part à midi précis.
+Travel & City,noun,bus,le bus,Je prends le bus chaque matin.
+Travel & City,noun,car,la voiture,Ma voiture est en panne aujourd'hui.
+Travel & City,noun,bicycle,le vélo,Je vais au travail à vélo.
+Travel & City,noun,taxi,le taxi,Prenons un taxi pour aller à l'aéroport.
+Travel & City,noun,ticket,le billet,J'ai acheté deux billets aller-retour.
+Travel & City,noun,map / card,la carte,Tu as une carte de la ville?
+Travel & City,noun,hotel,l'hôtel,L'hôtel est près de la gare.
+Travel & City,noun,restaurant,le restaurant,Ce restaurant est excellent et pas cher.
+Travel & City,noun,bank,la banque,La banque est fermée le dimanche.
+Travel & City,noun,post office,la poste,Je vais à la poste envoyer un colis.
+Travel & City,noun,shop,le magasin,Ce magasin ferme à vingt heures.
+Travel & City,noun,market,le marché,Je vais au marché le samedi matin.
+Travel & City,noun,museum,le musée,Le musée ouvre à neuf heures.
+Time,adverb,today,aujourd'hui,Aujourd'hui il fait très beau.
+Time,adverb,tomorrow,demain,Je travaille demain toute la journée.
+Time,adverb,yesterday,hier,Hier j'ai mangé au restaurant.
+Time,adverb,now,maintenant,Je suis occupé maintenant.
+Time,adverb,soon,bientôt,À bientôt!
+Time,adverb,always / still,toujours,Il est toujours en retard.
+Time,adverb,often,souvent,Je mange souvent ici le midi.
+Time,adverb,sometimes,parfois,Parfois je prends le bus au lieu du vélo.
+Time,adverb,never,jamais,Je ne mange jamais de viande.
+Time,noun,morning,le matin,Je fais du sport le matin.
+Time,noun,afternoon,l'après-midi,Je me repose l'après-midi.
+Time,noun,evening,le soir,Nous dînons ensemble le soir.
+Time,noun,night,la nuit,La nuit il fait très froid en hiver.
+Time,noun,week,la semaine,La semaine prochaine je pars en vacances.
+Time,noun,month,le mois,Ce mois-ci je suis très occupé.
+Work & Study,noun,work,le travail,J'aime vraiment mon travail.
+Work & Study,noun,office / desk,le bureau,Mon bureau est au deuxième étage.
+Work & Study,noun,school,l'école,Les enfants vont à l'école à pied.
+Work & Study,noun,university,l'université,Elle étudie le droit à l'université.
+Work & Study,noun,class / lesson,le cours,Le cours commence dans dix minutes.
+Work & Study,noun,lesson,la leçon,C'est une leçon très difficile.
+Work & Study,noun,homework / duty,le devoir,J'ai beaucoup de devoirs ce soir.
+Work & Study,noun,book,le livre,J'ai lu ce livre deux fois.
+Work & Study,noun,notebook,le cahier,Écris tes réponses dans le cahier.
+Work & Study,noun,pen,le stylo,Tu as un stylo que je peux emprunter?
+Work & Study,noun,question,la question,Tu as des questions sur le cours?
+Work & Study,noun,answer,la réponse,La réponse correcte est la troisième.
+Work & Study,verb,to understand,comprendre,Je ne comprends pas cette règle.
+Work & Study,verb,to learn,apprendre,J'apprends le français depuis six mois.
+Work & Study,verb,to write,écrire,J'écris une lettre à mes parents.
+Work & Study,verb,to read,lire,Je lis un livre intéressant en ce moment.
+Health & Body,noun,head,la tête,J'ai mal à la tête depuis ce matin.
+Health & Body,noun,hand,la main,Lève la main si tu sais la réponse.
+Health & Body,noun,foot,le pied,J'ai mal au pied après la course.
+Health & Body,noun,eyes,les yeux,Elle a de beaux yeux bleus.
+Health & Body,noun,mouth,la bouche,Ouvre la bouche s'il vous plaît.
+Health & Body,noun,nose,le nez,Il a le nez qui coule.
+Health & Body,noun,ear,l'oreille,J'ai mal à l'oreille depuis hier.
+Health & Body,noun,doctor,le médecin,Je dois voir le médecin aujourd'hui.
+Health & Body,noun,pharmacy,la pharmacie,La pharmacie est ouverte jusqu'à vingt heures.
+Health & Body,noun,health,la santé,La santé est la chose la plus importante.
+Health & Body,adjective,tired,fatigué,Je suis très fatigué ce soir.
+Health & Body,adjective,sick,malade,Elle est malade depuis lundi.
+Health & Body,phrase,to hurt / have pain,avoir mal,J'ai mal au ventre depuis ce matin.
+Weather & Nature,noun,weather / time,le temps,Quel temps fait-il aujourd'hui?
+Weather & Nature,noun,sun,le soleil,Le soleil brille toute la journée.
+Weather & Nature,noun,rain,la pluie,Il y a de la pluie aujourd'hui.
+Weather & Nature,noun,wind,le vent,Il y a beaucoup de vent en automne.
+Weather & Nature,noun,snow,la neige,La neige est tombée cette nuit.
+Weather & Nature,adjective,hot / warm,chaud,Il fait très chaud en été.
+Weather & Nature,adjective,cold,froid,Il fait très froid en hiver.
+Weather & Nature,adjective,beautiful / nice,beau,Il fait beau aujourd'hui enfin!
+Weather & Nature,noun,sea,la mer,Nous allons à la mer en été.
+Weather & Nature,noun,mountain,la montagne,J'adore faire du ski à la montagne.
+Weather & Nature,noun,forest,la forêt,La forêt est magnifique en automne.
+Weather & Nature,noun,flower,la fleur,Elle aime les fleurs du jardin.
+Weather & Nature,noun,tree,l'arbre,L'arbre devant la maison est très grand.
+Adjectives,adjective,big / tall,grand,Cette maison est vraiment très grande.
+Adjectives,adjective,small / short,petit,Mon appartement est petit mais confortable.
+Adjectives,adjective,good,bon,Ce repas est vraiment très bon.
+Adjectives,adjective,new,nouveau,J'ai un nouveau téléphone depuis hier.
+Adjectives,adjective,old,vieux,Cette église est très vieille.
+Adjectives,adjective,young,jeune,Elle est jeune et très dynamique.
+Adjectives,adjective,easy,facile,Ce n'est pas aussi facile que je croyais.
+Adjectives,adjective,difficult,difficile,Ce problème est vraiment difficile.
+Adjectives,adjective,important,important,C'est très important pour moi.
+Adjectives,adjective,expensive / dear,cher,Ce restaurant est trop cher.
+Adjectives,adjective,free,gratuit,L'entrée au musée est gratuite.
+Adjectives,adjective,pretty,joli,Tu as une très jolie robe.
+Adjectives,adjective,happy,content,Je suis content de te voir enfin.
+Adjectives,adjective,sad,triste,Il est triste depuis plusieurs jours.
+Adjectives,adjective,fast,rapide,Le train est rapide et confortable.
+Adjectives,adjective,slow,lent,La connexion internet est très lente.
+Connectors,conjunction,and,et,J'aime le café et le thé.
+Connectors,conjunction,but,mais,Je veux venir mais je suis trop occupé.
+Connectors,conjunction,or,ou,Tu veux du café ou du thé?
+Connectors,conjunction,because,parce que,Je suis fatigué parce que j'ai peu dormi.
+Connectors,conjunction,when,quand,Appelle-moi quand tu arrives à la gare.
+Connectors,conjunction,if,si,Si tu veux on peut partir maintenant.
+Connectors,conjunction,so / therefore,donc,J'ai faim donc je mange quelque chose.
+Connectors,preposition,with,avec,Je viens avec toi bien sûr.
+Connectors,preposition,without,sans,Je ne peux pas vivre sans café.
+Connectors,preposition,for / to,pour,Ce cadeau est pour toi.
+Connectors,preposition,in,dans,Le chat est dans la boîte.
+Connectors,preposition,on,sur,Le livre est sur la table.
+Connectors,preposition,under,sous,Le chat est sous la chaise.
+Connectors,preposition,between,entre,La banque est entre la poste et le musée.
+Connectors,preposition,at someone's place,chez,Je suis chez moi ce soir.
+Shopping & Money,noun,money,l'argent,Je n'ai pas assez d'argent aujourd'hui.
+Shopping & Money,noun,price,le prix,Quel est le prix de ce manteau?
+Shopping & Money,noun,bank card,la carte bancaire,Je paie avec ma carte bancaire.
+Shopping & Money,noun,bag,le sac,J'ai oublié mon sac au bureau.
+Shopping & Money,noun,size,la taille,Quelle est votre taille?
+Shopping & Money,noun,color,la couleur,Quelle couleur préférez-vous?
+Shopping & Money,verb,to try,essayer,Je peux essayer ce manteau?
+Shopping & Money,verb,to cost,coûter,Combien ça coûte?
+Emotions & Opinions,adjective,happy,heureux,Je suis très heureux de te voir.
+Emotions & Opinions,adjective,worried,inquiet,Je suis inquiet pour mon ami.
+Emotions & Opinions,adjective,calm,calme,Reste calme s'il te plaît.
+Emotions & Opinions,adjective,annoyed,énervé,Il est énervé parce qu'il est en retard.
+Emotions & Opinions,verb,to think,penser,Je pense que c'est une bonne idée.
+Emotions & Opinions,verb,to believe,croire,Je crois que tu as raison.
+Emotions & Opinions,verb,to hope,espérer,J'espère que tu vas bien.
+Technology,noun,phone,le téléphone,Mon téléphone est mort et je cherche un chargeur.
+Technology,noun,computer,l'ordinateur,J'utilise l'ordinateur pour travailler.
+Technology,noun,screen,l'écran,L'écran de mon téléphone est cassé.
+Technology,noun,message,le message,J'ai reçu un message important.
+Technology,noun,email,l'e-mail,Envoie-moi un e-mail avec les détails.
+Technology,noun,internet,internet,Je n'ai pas internet ici.
+Technology,noun,password,le mot de passe,J'ai oublié mon mot de passe.
+Technology,verb,to download,télécharger,Je télécharge l'application maintenant.
+Business Terminology,noun,artificial intelligence,l'intelligence artificielle,L'intelligence artificielle aide les entreprises.
+Business Terminology,noun,machine learning,l'apprentissage automatique,L'apprentissage automatique am�liore les mod�les.
+Business Terminology,noun,data,les donn�es,Les donn�es sont tr�s importantes.
+Business Terminology,noun,database,la base de donn�es,La base de donn�es est s�curis�e.
+Business Terminology,noun,algorithm,l'algorithme,L'algorithme analyse les donn�es.
+Business Terminology,noun,software,le logiciel,Le logiciel fonctionne bien.
+Business Terminology,noun,application,l'application,Nous d�veloppons une application.
+Business Terminology,noun,user interface,l'interface utilisateur,L'interface utilisateur est simple.
+Business Terminology,noun,user experience,l'exp�rience utilisateur,L'exp�rience utilisateur est importante.
+Business Terminology,noun,cybersecurity,la cybers�curit�,La cybers�curit� prot�ge les donn�es.
+Business Terminology,noun,automation,l'automatisation,L'automatisation fait gagner du temps.
+Business Terminology,noun,digital transformation,la transformation num�rique,L'entreprise commence une transformation num�rique.
+Business Terminology,noun,cloud computing,le cloud computing,L'application fonctionne avec le cloud computing.
+Business Terminology,noun,API,l'API,L'application utilise une API.
+Business Terminology,noun,AI model,le mod�le d'IA,Le mod�le d'IA donne une r�ponse.
+Business Terminology,noun,chatbot,le chatbot,Le chatbot r�pond aux questions.
+Business Terminology,noun,prompt,le prompt,Le prompt doit �tre clair.
+Business Terminology,noun,platform,la plateforme,La plateforme est facile � utiliser.
+Business Terminology,noun,server,le serveur,Le serveur est rapide.
+Business Terminology,noun,security,la s�curit�,La s�curit� est une priorit�.
+Business Terminology,verb,to deploy,d�ployer,Nous allons d�ployer l'application.
+Business Terminology,verb,to automate,automatiser,Nous voulons automatiser cette t�che.
+Business Terminology,verb,to analyze,analyser,Nous analysons les r�sultats.
+Business Terminology,verb,to optimize,optimiser,L'�quipe optimise le syst�me.
+Business Terminology,verb,to integrate,int�grer,Nous devons int�grer cette API.
