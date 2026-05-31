@@ -26,7 +26,9 @@ This document covers everything you need to go from a local codebase to a fully 
 | Language | JavaScript (JSX) |
 | Package manager | npm |
 | Hosting | Vercel (free tier) |
-| Source control | GitHub |
+| Source control | GitHub — `Aimpact-Development/french-vocab-app` |
+| GitHub URL | https://github.com/Aimpact-Development/french-vocab-app |
+| Published on | Aimpact / welcome-to-lux website (social contribution) |
 
 **Why Vercel instead of Hostinger?**
 Hostinger is designed for PHP/WordPress sites. Every time you change the code you would need to manually build the project and upload files via FTP. Vercel is purpose-built for React apps: it detects your GitHub repository, builds automatically on every push, and gives each branch its own live preview URL. It is free for projects like this one.
@@ -65,39 +67,42 @@ npm run lint       # Check for code style issues
 
 ## 3. GitHub Setup
 
-### 3.1 Create a repository on GitHub
+### 3.1 Repository location
 
-1. Go to [github.com](https://github.com) and sign in (create an account if you don't have one).
-2. Click the **+** icon in the top-right corner → **New repository**.
-3. Fill in:
-   - **Repository name:** `french-vocab-app`
-   - **Visibility:** Private (recommended) or Public
-   - **Do NOT** tick "Add a README", "Add .gitignore", or "Choose a license" — the project already has these.
-4. Click **Create repository**.
+The repository has already been created and all three branches pushed. No action needed here — this section is for reference only.
 
-GitHub will show you a page with setup instructions. You only need the URL shown at the top (it looks like `https://github.com/YOUR-USERNAME/french-vocab-app.git`). Copy it.
+| Item | Value |
+|------|-------|
+| GitHub org | `Aimpact-Development` |
+| Repository | `french-vocab-app` (Private) |
+| URL | https://github.com/Aimpact-Development/french-vocab-app |
+| Remote name | `origin` |
 
-### 3.2 Push your local code to GitHub
+Branches on GitHub:
+- `main` — production
+- `staging` — pre-production
+- `develop` — active development
 
-Run these commands in your terminal from the project folder, replacing the URL with your own:
+### 3.2 Cloning the repository on a new machine
+
+If you ever need to set up the project on a new computer:
 
 ```bash
-# Tell git where GitHub is
-git remote add origin https://github.com/YOUR-USERNAME/french-vocab-app.git
-
-# Push all three branches
-git push -u origin main
-git push -u origin staging
-git push -u origin develop
+git clone https://github.com/Aimpact-Development/french-vocab-app.git
+cd french-vocab-app
+npm install
+git checkout develop   # switch to the working branch
 ```
 
-After this, refresh your GitHub page and you will see all three branches.
+### 3.3 Pushing future changes
 
-### 3.3 Set branch protection rules (important)
+Your local branches already track their GitHub counterparts, so from now on a simple `git push` is enough — no flags needed.
+
+### 3.4 Set branch protection rules (important)
 
 This prevents accidentally pushing directly to `main` or `staging` without a review.
 
-1. On GitHub, go to your repo → **Settings** → **Branches**.
+1. Go to https://github.com/Aimpact-Development/french-vocab-app → **Settings** → **Branches**.
 2. Click **Add branch ruleset** (or "Add rule" depending on your GitHub version).
 3. For `main`:
    - Branch name pattern: `main`
