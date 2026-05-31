@@ -20,6 +20,7 @@ export const gs = {
     display: 'grid',
     gridTemplateColumns: '1fr 56px 1fr',
     rowGap: 10,
+    columnGap: 24,
     position: 'relative',       // anchor for the SVG overlay
     width: '100%',
     maxWidth: 920,
