@@ -67,6 +67,7 @@ function parseCsvLine(line) {
 }
 
 const ROUND_SIZE = 6;
+const MAX_WORDS  = 300;
 const FR_KEYS = ['1', '2', '3', '4', '5', '6'];
 
 const CEFR_META = [
@@ -221,7 +222,7 @@ function SelectionScreen({ onStart, vocab }) {
           {availCefr.map(({ code, label, color }) => {
             const on = selCefr.has(code);
             return (
-              <label key={code} style={ss.chip(on, color)}>
+              <label key={code} style={ss.chip(on, color)} className="btn3d">
                 <input type="checkbox" checked={on} onChange={() => toggleCefr(code)} style={{ display: 'none' }} />
                 <span style={ss.chipDot(color)} />
                 <span style={ss.chipLabel}>{label}</span>
@@ -234,7 +235,7 @@ function SelectionScreen({ onStart, vocab }) {
         <div style={ss.sectionLabel}><span>Content Type</span></div>
         <div style={ss.typeToggle}>
           {[{ code: 'W', label: 'Words & Phrases' }, { code: 'S', label: 'Sentences' }].map(({ code, label }) => (
-            <button key={code} style={ss.typeBtn(contentType === code)} onClick={() => setContentType(code)}>
+            <button key={code} style={ss.typeBtn(contentType === code)} className="btn3d" onClick={() => setContentType(code)}>
               {label}
             </button>
           ))}
@@ -258,7 +259,7 @@ function SelectionScreen({ onStart, vocab }) {
                 const on = selTopics.has(topic);
                 const color = TOPIC_COLORS[topic] || '#64748b';
                 return (
-                  <label key={topic} style={ss.chip(on, color)}>
+                  <label key={topic} style={ss.chip(on, color)} className="btn3d">
                     <input type="checkbox" checked={on} onChange={() => toggleTopic(topic)} style={{ display: 'none' }} />
                     <span style={ss.chipDot(color)} />
                     <span style={ss.chipLabel}>{topic}</span>
@@ -285,7 +286,7 @@ function SelectionScreen({ onStart, vocab }) {
             const on = selGrammar.has(g);
             const color = GRAMMAR_COLORS[g] || '#64748b';
             return (
-              <label key={g} style={ss.chip(on, color)}>
+              <label key={g} style={ss.chip(on, color)} className="btn3d">
                 <input type="checkbox" checked={on} onChange={() => toggleGrammar(g)} style={{ display: 'none' }} />
                 <span style={ss.chipDot(color)} />
                 <span style={ss.chipLabel}>{g}</span>
@@ -298,16 +299,17 @@ function SelectionScreen({ onStart, vocab }) {
         {/* ── Word limit ── */}
         <div style={{ ...ss.sectionLabel, marginTop: 24 }}>
           <span>Max {itemLabel} per session</span>
+          <span style={{ color: '#ef4444', fontSize: 10, fontWeight: 700, letterSpacing: '0.05em' }}>HARD LIMIT: 300</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 4 }}>
           <input
-            type="number" min={ROUND_SIZE} max={9999} value={wordLimit}
-            onChange={e => setWordLimit(Math.max(ROUND_SIZE, parseInt(e.target.value) || DEFAULT_LIMIT))}
+            type="number" min={ROUND_SIZE} max={MAX_WORDS} value={wordLimit}
+            onChange={e => setWordLimit(Math.min(MAX_WORDS, Math.max(ROUND_SIZE, parseInt(e.target.value) || DEFAULT_LIMIT)))}
             style={ss.limitInput}
           />
           <span style={{ fontSize: 13, color: '#64748b' }}>
             {filteredCount > wordLimit
-              ? `${filteredCount} available — will randomly pick ${wordLimit}`
+              ? `${filteredCount} available — will play ${Math.min(wordLimit, MAX_WORDS)}`
               : `${filteredCount} ${itemLabel} will be played`}
           </span>
         </div>
@@ -316,6 +318,7 @@ function SelectionScreen({ onStart, vocab }) {
           <span style={ss.wordCount} />
           <button
             style={ss.startBtn(filteredCount >= ROUND_SIZE)}
+            className="btn3d"
             disabled={filteredCount < ROUND_SIZE}
             onClick={() => onStart(selCefr, contentType, selTopics, selGrammar, wordLimit)}
           >
@@ -375,7 +378,7 @@ const ss = {
   typeToggle: {
     display: 'flex',
     background: '#0f172a',
-    borderRadius: 10,
+    borderRadius: 6,
     padding: 3,
     gap: 3,
     marginBottom: 24,
@@ -383,45 +386,47 @@ const ss = {
   typeBtn: (on) => ({
     flex: 1,
     padding: '9px 16px',
-    borderRadius: 8,
-    border: on ? '1.5px solid #3b82f6' : '1.5px solid transparent',
-    background: on ? 'rgba(59,130,246,0.15)' : 'transparent',
+    borderRadius: 5,
+    border: on ? '1.5px solid #3b82f6' : '1.5px solid #1e293b',
+    background: on ? 'rgba(59,130,246,0.18)' : '#1a2234',
     color: on ? '#60a5fa' : '#475569',
     fontWeight: on ? 700 : 500,
     fontSize: 13,
     cursor: 'pointer',
     fontFamily: 'inherit',
-    transition: 'all 0.15s ease',
+    boxShadow: on ? '0 4px 0 #1e3a5f' : '0 4px 0 rgba(0,0,0,0.5)',
   }),
   grid: { display: 'flex', flexWrap: 'wrap', gap: 8 },
   chip: (on, color) => ({
     display: 'flex', alignItems: 'center', gap: 6,
-    padding: '6px 12px', borderRadius: 20,
+    padding: '6px 12px', borderRadius: 5,
     border: `1.5px solid ${on ? color : '#1e293b'}`,
     background: on ? `${color}18` : '#0f172a',
-    cursor: 'pointer', transition: 'all 0.15s ease', userSelect: 'none',
+    cursor: 'pointer', userSelect: 'none',
+    boxShadow: on ? `0 4px 0 ${color}55` : '0 4px 0 rgba(0,0,0,0.45)',
   }),
   chipDot:   (color) => ({ width: 7, height: 7, borderRadius: '50%', background: color, flexShrink: 0 }),
   chipLabel: { fontSize: 13, color: '#cbd5e1', fontWeight: 500 },
   chipCount: {
     fontSize: 11, color: '#475569', fontWeight: 600,
-    background: '#1e293b', borderRadius: 10, padding: '1px 6px',
+    background: '#1e293b', borderRadius: 3, padding: '1px 6px',
   },
   footer:    { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 28 },
   wordCount: { fontSize: 13, color: '#475569', fontWeight: 500 },
   startBtn:  (enabled) => ({
     background: enabled ? 'linear-gradient(135deg, #f97316, #fb923c)' : '#1e293b',
     color: enabled ? '#fff' : '#334155',
-    border: 'none', borderRadius: 10, padding: '12px 28px',
+    border: 'none', borderRadius: 5, padding: '12px 28px',
     fontSize: 14, fontWeight: 600,
     cursor: enabled ? 'pointer' : 'not-allowed',
-    transition: 'all 0.2s ease', letterSpacing: '0.01em',
+    letterSpacing: '0.01em',
+    boxShadow: enabled ? '0 5px 0 #b45309' : 'none',
   }),
   warn: { textAlign: 'center', fontSize: 12, color: '#ef4444', marginTop: 10 },
   limitInput: {
     width: 72, padding: '6px 10px',
     background: '#0f172a', border: '1.5px solid #334155',
-    borderRadius: 8, color: '#f1f5f9', fontSize: 15,
+    borderRadius: 4, color: '#f1f5f9', fontSize: 15,
     fontWeight: 600, fontFamily: 'inherit', outline: 'none', textAlign: 'center',
   },
 };
@@ -458,13 +463,14 @@ export default function FrenchMatchGame() {
   useEffect(() => { autoModeRef.current = autoMode; }, [autoMode]);
 
   function handleStart(selCefr, contentType, selTopics, selGrammar, wordLimit) {
+    const cap = Math.min(wordLimit, MAX_WORDS);
     let filtered = vocab.filter(w =>
       selCefr.has(w.cefr) &&
       w.type === contentType &&
       (selTopics.size === 0 || selTopics.has(w.topic)) &&
       (selGrammar.size === 0 || selGrammar.has(w.grammar_type))
     );
-    if (filtered.length > wordLimit) filtered = shuffle(filtered).slice(0, wordLimit);
+    if (filtered.length > cap) filtered = shuffle(filtered).slice(0, cap);
     setActiveVocab(filtered);
     setScreen('game');
   }
@@ -643,10 +649,10 @@ export default function FrenchMatchGame() {
             <div style={gs.stat}><span style={gs.statNum}>{avgTime}</span><span style={gs.statLabel}>Avg / word</span></div>
           </div>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
-            <button style={gs.secondaryBtn} onClick={() => { resetGame(); setGameOver(false); setScreen('select'); }}>
+            <button style={gs.secondaryBtn} className="btn3d" onClick={() => { resetGame(); setGameOver(false); setScreen('select'); }}>
               Change words
             </button>
-            <button style={gs.restartBtn} onClick={() => {
+            <button style={gs.restartBtn} className="btn3d" onClick={() => {
               resetGame(); setGameOver(false);
               questionStartRef.current = Date.now();
               startRound(new Set(), activeVocab);
@@ -678,12 +684,13 @@ export default function FrenchMatchGame() {
           <div style={gs.pill}>🎯 {accuracy}</div>
           <button
             style={{ ...gs.menuBtn, ...(autoMode ? gs.autoBtnOn : {}) }}
+            className="btn3d"
             onClick={() => { if (autoMode) window.speechSynthesis?.cancel(); setAutoMode(a => !a); }}
             title={autoMode ? 'Stop auto-play' : 'Auto-play'}
           >
             {autoMode ? '⏹ Stop' : '▶ Auto'}
           </button>
-          <button style={gs.menuBtn} onClick={() => { resetGame(); setGameOver(false); setScreen('select'); }} title="Back to selection">⚙</button>
+          <button style={gs.menuBtn} className="btn3d" onClick={() => { resetGame(); setGameOver(false); setScreen('select'); }} title="Back to selection">⚙</button>
         </div>
       </div>
 
@@ -735,7 +742,7 @@ export default function FrenchMatchGame() {
             const isWrong   = wrongFrSlot === slot;
             const color     = TOPIC_COLORS[word?.cat] || '#64748b';
             return (
-              <button key={slot} style={frCardStyle(isMatched, isWrong)} onClick={() => handleFr(slot)} disabled={isMatched}>
+              <button key={slot} style={frCardStyle(isMatched, isWrong)} className="btn3d" onClick={() => handleFr(slot)} disabled={isMatched}>
                 <span style={gs.keyHint}>{FR_KEYS[slot]}</span>
                 <div style={gs.frCardInner}>
                   <span style={gs.wordText}>{word?.fr}</span>
@@ -761,7 +768,7 @@ function enCardStyle(isActive, isMatched) {
   const base = {
     position: 'relative', display: 'flex', alignItems: 'center',
     width: '100%', minHeight: 64, padding: '12px 36px 12px 28px',
-    borderRadius: 12, border: '2px solid transparent',
+    borderRadius: 6, border: '2px solid transparent',
     fontSize: 15, fontWeight: 500, textAlign: 'left',
     transition: 'all 0.2s ease', letterSpacing: '0.01em',
   };
@@ -774,14 +781,14 @@ function frCardStyle(isMatched, isWrong) {
   const base = {
     position: 'relative', display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
     width: '100%', minHeight: 64, padding: '12px 36px',
-    borderRadius: 12, border: '2px solid transparent',
+    borderRadius: 6, border: '2px solid transparent',
     cursor: isMatched ? 'default' : 'pointer',
     fontSize: 15, fontWeight: 500, fontFamily: 'inherit',
-    textAlign: 'center', transition: 'all 0.15s ease', outline: 'none', letterSpacing: '0.01em',
+    textAlign: 'center', outline: 'none', letterSpacing: '0.01em',
   };
-  if (isMatched) return { ...base, background: 'rgba(20,83,45,0.6)', border: '2px solid #22c55e', color: '#86efac', alignItems: 'flex-start', paddingTop: 14 };
-  if (isWrong)   return { ...base, background: 'rgba(127,29,29,0.85)', border: '2px solid #ef4444', color: '#fca5a5', animation: 'shake 0.35s ease' };
-  return { ...base, background: '#1e293b', border: '2px solid #334155', color: '#e2e8f0' };
+  if (isMatched) return { ...base, background: 'rgba(20,83,45,0.6)', border: '2px solid #22c55e', color: '#86efac', alignItems: 'flex-start', paddingTop: 14, boxShadow: 'none' };
+  if (isWrong)   return { ...base, background: 'rgba(127,29,29,0.85)', border: '2px solid #ef4444', color: '#fca5a5', animation: 'shake 0.35s ease', boxShadow: '0 4px 0 #7f1d1d' };
+  return { ...base, background: '#1e293b', border: '2px solid #334155', color: '#e2e8f0', boxShadow: '0 4px 0 rgba(0,0,0,0.5)' };
 }
 
 const gs = {
@@ -793,9 +800,9 @@ const gs = {
   title:         { fontSize: 22, fontWeight: 700, color: '#f1f5f9', letterSpacing: '-0.02em' },
   subtitle:      { fontSize: 12, color: '#64748b', marginTop: 2 },
   headerRight:   { display: 'flex', gap: 8, alignItems: 'center' },
-  pill:          { background: '#1e293b', border: '1px solid #334155', borderRadius: 20, padding: '5px 14px', fontSize: 13, color: '#94a3b8', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 5 },
-  menuBtn:       { background: '#1e293b', border: '1px solid #334155', borderRadius: 20, padding: '5px 12px', fontSize: 13, fontWeight: 600, fontFamily: 'inherit', color: '#64748b', cursor: 'pointer' },
-  autoBtnOn:     { background: 'rgba(34,197,94,0.15)', border: '1px solid #22c55e', color: '#22c55e' },
+  pill:          { background: '#1e293b', border: '1px solid #334155', borderRadius: 5, padding: '5px 14px', fontSize: 13, color: '#94a3b8', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 5 },
+  menuBtn:       { background: '#1e293b', border: '1px solid #334155', borderRadius: 5, padding: '5px 12px', fontSize: 13, fontWeight: 600, fontFamily: 'inherit', color: '#64748b', cursor: 'pointer', boxShadow: '0 4px 0 rgba(0,0,0,0.55)' },
+  autoBtnOn:     { background: 'rgba(34,197,94,0.15)', border: '1px solid #22c55e', color: '#22c55e', boxShadow: '0 4px 0 #14532d' },
   instructions:  { fontSize: 13, color: '#475569', margin: '16px 0 20px', textAlign: 'center', lineHeight: 1.8 },
   kbd:           { background: '#1e293b', border: '1px solid #475569', borderRadius: 5, padding: '1px 7px', fontSize: 11, fontFamily: 'monospace', color: '#94a3b8', margin: '0 3px' },
   board:         { display: 'flex', gap: 0, width: '100%', maxWidth: 920, padding: '0 16px', alignItems: 'flex-start' },
@@ -817,6 +824,6 @@ const gs = {
   stat:          { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 },
   statNum:       { fontSize: 32, fontWeight: 700, color: '#f1f5f9' },
   statLabel:     { fontSize: 12, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.08em' },
-  restartBtn:    { background: 'linear-gradient(135deg, #f97316, #fb923c)', color: '#fff', border: 'none', borderRadius: 12, padding: '14px 28px', fontSize: 15, fontWeight: 600, cursor: 'pointer' },
-  secondaryBtn:  { background: '#1e293b', color: '#94a3b8', border: '1px solid #334155', borderRadius: 12, padding: '14px 28px', fontSize: 15, fontWeight: 600, cursor: 'pointer' },
+  restartBtn:    { background: 'linear-gradient(135deg, #f97316, #fb923c)', color: '#fff', border: 'none', borderRadius: 5, padding: '14px 28px', fontSize: 15, fontWeight: 600, cursor: 'pointer', boxShadow: '0 5px 0 #b45309' },
+  secondaryBtn:  { background: '#1e293b', color: '#94a3b8', border: '1px solid #334155', borderRadius: 5, padding: '14px 28px', fontSize: 15, fontWeight: 600, cursor: 'pointer', boxShadow: '0 5px 0 rgba(0,0,0,0.55)' },
 };

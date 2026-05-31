@@ -66,6 +66,20 @@ body {
   box-sizing: border-box;
 }
 
+/* ── 3D button effect ─────────────────────────────────────────────────────── */
+.btn3d {
+  transition: transform 0.08s ease, box-shadow 0.08s ease !important;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.btn3d:hover:not(:disabled) {
+  transform: translateY(-2px) !important;
+}
+.btn3d:active:not(:disabled) {
+  transform: translateY(4px) !important;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.6) !important;
+}
+
 @keyframes shake {
   0%   { transform: translateX(0); }
   20%  { transform: translateX(-6px); }
