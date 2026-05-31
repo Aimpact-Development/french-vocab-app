@@ -7,7 +7,7 @@ export default function GameBoard({
   roundWords, enOrder, frOrder, matched, activeEnSlot, wrongFrSlot,
   score, accuracy, autoMode, onAutoToggle, onFrClick, onBack,
   roundNum, wordsLearned, totalWords, progressPct, transitioning,
-  theme, onToggleTheme,
+  theme, onToggleTheme, contentType,
 }) {
   // ── Refs for SVG line calculation ─────────────────────────────────────────
   const boardRef = useRef(null);
@@ -116,9 +116,13 @@ export default function GameBoard({
         </svg>
 
         {/* ── Header row (row 0 of the grid) ── */}
-        <div style={{ ...gs.colHeader, color: '#fb923c' }}>English</div>
+        <div style={{ ...gs.colHeader, color: '#fb923c' }}>
+          {contentType === 'ANT' ? 'Word' : 'English'}
+        </div>
         <div />
-        <div style={{ ...gs.colHeader, color: '#818cf8' }}>Français</div>
+        <div style={{ ...gs.colHeader, color: '#818cf8' }}>
+          {contentType === 'ANT' ? 'Antonym' : 'Français'}
+        </div>
 
         {/* ── Card rows (rows 1–ROUND_SIZE of the grid) ── */}
         {enOrder.map((enWordId, slot) => {
@@ -134,12 +138,21 @@ export default function GameBoard({
           return (
             <React.Fragment key={slot}>
 
-              {/* English card */}
+              {/* English / Word card */}
               <div ref={enRefs.current[slot]} style={enCardStyle(isActive, enMatched)}>
                 {isActive && <span style={gs.activeDot} />}
-                <span style={gs.wordText}>{enWord?.en}</span>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1 }}>
+                  <span style={gs.wordText}>{enWord?.en}</span>
+                  {enWord?.hint && (
+                    <span style={gs.hintText}>({enWord.hint})</span>
+                  )}
+                </div>
                 {enMatched && (
-                  <span style={gs.speakerBtn} onClick={() => speak(enWord?.fr)} title="Hear French">🔊</span>
+                  <span
+                    style={gs.speakerBtn}
+                    onClick={() => speak(contentType === 'ANT' ? enWord?.en : enWord?.fr)}
+                    title="Hear word"
+                  >🔊</span>
                 )}
               </div>
 

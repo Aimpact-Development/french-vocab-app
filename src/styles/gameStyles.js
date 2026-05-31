@@ -39,6 +39,7 @@ export const gs = {
   // ── Card inner layout helpers ─────────────────────────────────────────────
   activeDot:    { position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', width: 8, height: 8, borderRadius: '50%', background: '#fb923c', boxShadow: '0 0 8px #fb923c' },
   wordText:     { flex: 1, textAlign: 'center', lineHeight: 1.3 },
+  hintText:     { fontSize: 11, color: 'var(--fm-text-3)', fontStyle: 'italic', marginTop: 3, textAlign: 'center', lineHeight: 1.3 },
   frCardInner:  { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, flex: 1 },
   exampleText:  { fontSize: 12, color: '#86efac', opacity: 0.9, fontStyle: 'italic', fontWeight: 400, lineHeight: 1.5, textAlign: 'center', maxWidth: '100%', borderTop: '1px solid rgba(134,239,172,0.2)', paddingTop: 6, marginTop: 2 },
   keyHint:      { position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', fontSize: 10, fontWeight: 700, fontFamily: 'monospace', color: 'var(--fm-text-4)', background: 'var(--fm-bg-input)', border: '1px solid var(--fm-border)', borderRadius: 4, padding: '1px 5px', lineHeight: 1.4 },

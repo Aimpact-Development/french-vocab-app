@@ -23,6 +23,7 @@ export default function FrenchMatchGame() {
   // ── Screen routing ────────────────────────────────────────────────────────
   const [screen, setScreen]           = useState('select');
   const [activeVocab, setActiveVocab] = useState([]);
+  const [contentType, setContentType] = useState('W');
 
   // ── Round state ───────────────────────────────────────────────────────────
   const questionStartRef              = useRef(null);
@@ -47,14 +48,15 @@ export default function FrenchMatchGame() {
   useEffect(() => { autoModeRef.current = autoMode; }, [autoMode]);
 
   // ── Handlers ──────────────────────────────────────────────────────────────
-  function handleStart(selCefr, contentType, selTopics, selGrammar, wordLimit) {
+  function handleStart(selCefr, type, selTopics, selGrammar, wordLimit) {
     const cap = Math.min(wordLimit, MAX_WORDS);
     let filtered = vocab.filter(w =>
-      selCefr.has(w.cefr) && w.type === contentType &&
+      selCefr.has(w.cefr) && w.type === type &&
       (selTopics.size === 0  || selTopics.has(w.topic)) &&
       (selGrammar.size === 0 || selGrammar.has(w.grammar_type))
     );
     if (filtered.length > cap) filtered = shuffle(filtered).slice(0, cap);
+    setContentType(type);
     setActiveVocab(filtered);
     setScreen('game');
   }
@@ -65,7 +67,8 @@ export default function FrenchMatchGame() {
     const picked  = shuffle(available).slice(0, Math.min(ROUND_SIZE, available.length));
     const words   = picked.map(i => ({
       fr: voc[i].french, en: voc[i].english,
-      cat: voc[i].topic, grammar: voc[i].grammar_type, example: voc[i].example,
+      cat: voc[i].topic, grammar: voc[i].grammar_type,
+      example: voc[i].example, hint: voc[i].hint || '',
     }));
     const idxs = words.map((_, i) => i);
     setRoundWords(words);
@@ -161,9 +164,12 @@ export default function FrenchMatchGame() {
       window.speechSynthesis.speak(uFr);
       timer = setTimeout(doClick, 6000);
     }
+    // For Antonyms both sides are French words; otherwise left side is English
+    const leftLang = contentType === 'ANT' ? 'fr-FR' : 'en-US';
+    const leftRate = contentType === 'ANT' ? 0.82   : 0.85;
     window.speechSynthesis.cancel();
     const uEn = new SpeechSynthesisUtterance(word.en);
-    uEn.lang = 'en-US'; uEn.rate = 0.85;
+    uEn.lang = leftLang; uEn.rate = leftRate;
     uEn.onend = speakFrench;
     window.speechSynthesis.speak(uEn);
     timer = setTimeout(speakFrench, 6000);
@@ -243,6 +249,7 @@ export default function FrenchMatchGame() {
       transitioning={transitioning}
       theme={theme}
       onToggleTheme={toggleTheme}
+      contentType={contentType}
     />
   );
 }

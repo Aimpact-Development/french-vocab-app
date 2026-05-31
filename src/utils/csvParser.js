@@ -34,7 +34,8 @@ export function parseCSV(text) {
         grammar_type: c[3]?.trim() || '',
         english:      c[4]?.trim() || '',
         french:       c[5]?.trim() || '',
-        example:      c.slice(6).join(',').trim(),
+        example:      c[6]?.trim() || '',
+        hint:         c[7]?.trim() || '',
       };
     }
     const topic = c[0]?.trim() || '';
