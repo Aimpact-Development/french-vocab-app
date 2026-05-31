@@ -51,7 +51,7 @@ export default function SelectionScreen({ onStart, vocab, theme, onToggleTheme }
     });
   }
 
-  const itemLabel = contentType === 'S' ? 'sentences' : contentType === 'P' ? 'phrases' : 'words';
+  const itemLabel = { W: 'words', P: 'phrases', S: 'sentences', ANT: 'antonyms' }[contentType] ?? 'items';
 
   return (
     <div style={ss.page}>
@@ -98,7 +98,7 @@ export default function SelectionScreen({ onStart, vocab, theme, onToggleTheme }
         {/* Content Type */}
         <div style={ss.sectionLabel}><span>Content Type</span></div>
         <div style={ss.typeToggle}>
-          {[{ code: 'W', label: 'Words' }, { code: 'P', label: 'Phrases' }, { code: 'S', label: 'Sentences' }]
+          {[{ code: 'W', label: 'Words' }, { code: 'P', label: 'Phrases' }, { code: 'S', label: 'Sentences' }, { code: 'ANT', label: 'Antonyms' }]
             .map(({ code, label }) => (
               <button key={code} style={ss.typeBtn(contentType === code)} className="btn3d" onClick={() => setContentType(code)}>
                 {label}

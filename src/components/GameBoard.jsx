@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef, useState, useLayoutEffect } from 'react';
 import { gs, enCardStyle, frCardStyle } from '../styles/gameStyles.js';
-import { TOPIC_COLORS, FR_KEYS } from '../constants/index.js';
+import { TOPIC_COLORS, FR_KEYS, ROUND_SIZE } from '../constants/index.js';
 import { speak } from '../utils/speech.js';
 
 export default function GameBoard({
@@ -9,6 +9,45 @@ export default function GameBoard({
   roundNum, wordsLearned, totalWords, progressPct, transitioning,
   theme, onToggleTheme,
 }) {
+  // ── Refs for SVG line calculation ─────────────────────────────────────────
+  const boardRef = useRef(null);
+  const enRefs   = useRef(Array.from({ length: ROUND_SIZE }, () => React.createRef()));
+  const frRefs   = useRef(Array.from({ length: ROUND_SIZE }, () => React.createRef()));
+  const [lines, setLines] = useState([]);
+
+  // Recalculate dotted match lines after every render where matched changes.
+  // useLayoutEffect runs after DOM mutations so getBoundingClientRect is accurate.
+  useLayoutEffect(() => {
+    if (!boardRef.current || matched.size === 0) {
+      setLines([]);
+      return;
+    }
+    const boardRect = boardRef.current.getBoundingClientRect();
+    const next = [];
+
+    matched.forEach(wordId => {
+      const enSlot = enOrder.indexOf(wordId);
+      const frSlot = frOrder.indexOf(wordId);
+      if (enSlot < 0 || frSlot < 0) return;
+
+      const enEl = enRefs.current[enSlot]?.current;
+      const frEl = frRefs.current[frSlot]?.current;
+      if (!enEl || !frEl) return;
+
+      const enRect = enEl.getBoundingClientRect();
+      const frRect = frEl.getBoundingClientRect();
+
+      next.push({
+        x1: enRect.right  - boardRect.left,
+        y1: enRect.top    + enRect.height / 2 - boardRect.top,
+        x2: frRect.left   - boardRect.left,
+        y2: frRect.top    + frRect.height / 2 - boardRect.top,
+      });
+    });
+
+    setLines(next);
+  }, [matched, enOrder, frOrder]);
+
   return (
     <div style={gs.page}>
 
@@ -46,75 +85,90 @@ export default function GameBoard({
 
       {/* Instructions */}
       <div style={gs.instructions}>
-        Highlighted <span style={{ color: '#fb923c', fontWeight: 600 }}>English</span> word is active —
-        click its <span style={{ color: '#818cf8', fontWeight: 600 }}>French</span> match.
+        Highlighted <span style={{ color: '#fb923c', fontWeight: 600 }}>English</span> word
+        is active — click its <span style={{ color: '#818cf8', fontWeight: 600 }}>French</span> match.
         Keys <kbd style={gs.kbd}>1–6</kbd>
       </div>
 
-      {/* Board */}
-      <div style={gs.board}>
+      {/* ── Board grid ──────────────────────────────────────────────────────── */}
+      <div ref={boardRef} style={gs.board}>
 
-        {/* English column */}
-        <div style={gs.column}>
-          <div style={gs.colHeader}><span style={{ color: '#fb923c' }}>English</span></div>
-          {enOrder.map((wordId, slot) => {
-            const word      = roundWords[wordId];
-            const isMatched = matched.has(wordId);
-            const isActive  = !isMatched && slot === activeEnSlot;
+        {/* SVG overlay — dotted bezier lines for each matched pair */}
+        <svg
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', overflow: 'visible', zIndex: 1 }}
+          aria-hidden="true"
+        >
+          {lines.map((line, i) => {
+            const cx = (line.x1 + line.x2) / 2;
             return (
-              <div key={slot} style={enCardStyle(isActive, isMatched)}>
+              <path
+                key={i}
+                d={`M ${line.x1} ${line.y1} C ${cx} ${line.y1}, ${cx} ${line.y2}, ${line.x2} ${line.y2}`}
+                stroke="#22c55e"
+                strokeWidth="2.5"
+                strokeDasharray="6 4"
+                fill="none"
+                opacity="0.8"
+                strokeLinecap="round"
+              />
+            );
+          })}
+        </svg>
+
+        {/* ── Header row (row 0 of the grid) ── */}
+        <div style={{ ...gs.colHeader, color: '#fb923c' }}>English</div>
+        <div />
+        <div style={{ ...gs.colHeader, color: '#818cf8' }}>Français</div>
+
+        {/* ── Card rows (rows 1–ROUND_SIZE of the grid) ── */}
+        {enOrder.map((enWordId, slot) => {
+          const frWordId  = frOrder[slot];
+          const enWord    = roundWords[enWordId];
+          const frWord    = roundWords[frWordId];
+          const enMatched = matched.has(enWordId);
+          const frMatched = matched.has(frWordId);
+          const isActive  = !enMatched && slot === activeEnSlot;
+          const isWrong   = wrongFrSlot === slot;
+          const dotColor  = TOPIC_COLORS[frWord?.cat] || '#64748b';
+
+          return (
+            <React.Fragment key={slot}>
+
+              {/* English card */}
+              <div ref={enRefs.current[slot]} style={enCardStyle(isActive, enMatched)}>
                 {isActive && <span style={gs.activeDot} />}
-                <span style={gs.wordText}>{word?.en}</span>
-                {isMatched && (
-                  <span style={gs.speakerBtn} onClick={() => speak(word?.fr)} title="Hear French">🔊</span>
+                <span style={gs.wordText}>{enWord?.en}</span>
+                {enMatched && (
+                  <span style={gs.speakerBtn} onClick={() => speak(enWord?.fr)} title="Hear French">🔊</span>
                 )}
               </div>
-            );
-          })}
-        </div>
 
-        {/* Arrow column */}
-        <div style={gs.arrowCol}>
-          <div style={{ height: 28 }} />
-          {enOrder.map((wordId, slot) => {
-            const isActive = !matched.has(wordId) && slot === activeEnSlot;
-            return (
-              <div key={slot} style={gs.arrowRow}>
-                <span style={{ ...gs.arrow, opacity: isActive ? 1 : 0.15 }}>→</span>
+              {/* Arrow cell */}
+              <div style={gs.arrowCell}>
+                <span style={{ ...gs.arrow, opacity: isActive ? 1 : 0.2 }}>→</span>
               </div>
-            );
-          })}
-        </div>
 
-        {/* French column */}
-        <div style={gs.column}>
-          <div style={gs.colHeader}><span style={{ color: '#818cf8' }}>Français</span></div>
-          {frOrder.map((wordId, slot) => {
-            const word      = roundWords[wordId];
-            const isMatched = matched.has(wordId);
-            const isWrong   = wrongFrSlot === slot;
-            const color     = TOPIC_COLORS[word?.cat] || '#64748b';
-            return (
+              {/* French card */}
               <button
-                key={slot}
-                style={frCardStyle(isMatched, isWrong)}
+                ref={frRefs.current[slot]}
+                style={frCardStyle(frMatched, isWrong)}
                 className="btn3d"
                 onClick={() => onFrClick(slot)}
-                disabled={isMatched}
+                disabled={frMatched}
               >
                 <span style={gs.keyHint}>{FR_KEYS[slot]}</span>
                 <div style={gs.frCardInner}>
-                  <span style={gs.wordText}>{word?.fr}</span>
-                  {isMatched && word?.example && (
-                    <span style={gs.exampleText}>{word.example}</span>
+                  <span style={gs.wordText}>{frWord?.fr}</span>
+                  {frMatched && frWord?.example && (
+                    <span style={gs.exampleText}>{frWord.example}</span>
                   )}
                 </div>
-                {isMatched && <span style={{ ...gs.checkMark, color }}> ✓</span>}
+                {frMatched && <span style={{ ...gs.checkMark, color: dotColor }}> ✓</span>}
               </button>
-            );
-          })}
-        </div>
 
+            </React.Fragment>
+          );
+        })}
       </div>
 
       {transitioning && (
