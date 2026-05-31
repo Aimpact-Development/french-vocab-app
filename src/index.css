@@ -1,58 +1,59 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+/* ── Theme tokens — dark (default) ──────────────────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --fm-bg-page:   linear-gradient(135deg, #0a0f1e 0%, #0f172a 100%);
+  --fm-bg-card:   #111827;
+  --fm-bg-input:  #0f172a;
+  --fm-bg-chip:   #0f172a;
+  --fm-bg-encard: #111827;
+  --fm-bg-frcard: #1e293b;
+  --fm-bg-pill:   #1e293b;
+  --fm-border:    #1e293b;
+  --fm-border-2:  #334155;
+  --fm-text-1:    #f1f5f9;
+  --fm-text-2:    #94a3b8;
+  --fm-text-3:    #64748b;
+  --fm-text-4:    #475569;
+  --fm-text-dim:  #374151;
+  --fm-text-chip: #cbd5e1;
+}
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+/* ── Theme tokens — light ────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --fm-bg-page:   linear-gradient(135deg, #dbeafe 0%, #f1f5f9 100%);
+  --fm-bg-card:   #ffffff;
+  --fm-bg-input:  #f8fafc;
+  --fm-bg-chip:   #f1f5f9;
+  --fm-bg-encard: #ffffff;
+  --fm-bg-frcard: #e2e8f0;
+  --fm-bg-pill:   #e2e8f0;
+  --fm-border:    #e2e8f0;
+  --fm-border-2:  #cbd5e1;
+  --fm-text-1:    #0f172a;
+  --fm-text-2:    #475569;
+  --fm-text-3:    #64748b;
+  --fm-text-4:    #94a3b8;
+  --fm-text-dim:  #cbd5e1;
+  --fm-text-chip: #334155;
 }
 
 body {
   margin: 0;
   background: #0a0f1e;
+  background: var(--fm-bg-page);
 }
 
 #root {
@@ -66,18 +67,19 @@ body {
   box-sizing: border-box;
 }
 
-/* ── 3D button effect ─────────────────────────────────────────────────────── */
+/* ── Button interaction (no shadow, just press movement) ─────────────────── */
 .btn3d {
-  transition: transform 0.08s ease, box-shadow 0.08s ease !important;
+  transition: transform 0.08s ease !important;
   -webkit-user-select: none;
   user-select: none;
 }
 .btn3d:hover:not(:disabled) {
-  transform: translateY(-2px) !important;
+  transform: translateY(-1px) !important;
+  filter: brightness(1.1);
 }
 .btn3d:active:not(:disabled) {
-  transform: translateY(4px) !important;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.6) !important;
+  transform: translateY(2px) !important;
+  filter: brightness(0.9);
 }
 
 @keyframes shake {
@@ -90,50 +92,6 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 10px rgba(251,146,60,0.25); }
-  50%       { box-shadow: 0 0 22px rgba(251,146,60,0.55); }
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+  0%, 100% { box-shadow: 0 0 10px rgba(251,146,60,0.3); }
+  50%       { box-shadow: 0 0 24px rgba(251,146,60,0.65); }
 }
