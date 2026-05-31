@@ -192,7 +192,7 @@ function SelectionScreen({ onStart, vocab }) {
     setSelGrammar(prev => { const n = new Set(prev); n.has(g) ? n.delete(g) : n.add(g); return n; });
   }
 
-  const itemLabel = contentType === 'S' ? 'sentences' : 'words';
+  const itemLabel = contentType === 'S' ? 'sentences' : contentType === 'P' ? 'phrases' : 'words';
 
   return (
     <div style={ss.page}>
@@ -234,7 +234,11 @@ function SelectionScreen({ onStart, vocab }) {
         {/* ── Content Type ── */}
         <div style={ss.sectionLabel}><span>Content Type</span></div>
         <div style={ss.typeToggle}>
-          {[{ code: 'W', label: 'Words & Phrases' }, { code: 'S', label: 'Sentences' }].map(({ code, label }) => (
+          {[
+            { code: 'W', label: 'Words' },
+            { code: 'P', label: 'Phrases' },
+            { code: 'S', label: 'Sentences' },
+          ].map(({ code, label }) => (
             <button key={code} style={ss.typeBtn(contentType === code)} className="btn3d" onClick={() => setContentType(code)}>
               {label}
             </button>
